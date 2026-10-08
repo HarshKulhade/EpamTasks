@@ -93,3 +93,19 @@ std::atomic<int>
 safe concurrent increment
     ↓
 Expected = Actual
+
+
+-----------------------
+
+Java Instruction Reordering Test
+
+InstructionReorderingTest.java demonstrates how two threads can read stale values when they access shared variables without synchronization.
+
+The variables `a`, `b`, `x`, and `y` are shared between both threads. The test resets them to zero, then starts two threads:
+
+- Thread A sets `a` to 1 and then copies `b` into `x`.
+- Thread B sets `b` to 1 and then copies `a` into `y`.
+
+The main thread calls `join()` on both threads so it waits until they finish before checking the results. However, `join()` does not make the two worker threads' individual reads and writes happen in a fixed order relative to each other. Since the shared variables are not `volatile` and the workers do not use synchronization, both reads can see the original zero values (`x == 0` and `y == 0`).
+
+If both values are zero, the test throws an `AssertionError`; otherwise, it prints `Test passed.` This is one execution of the test, so the both-zero result is possible but is not guaranteed on every run.
