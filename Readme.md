@@ -16,10 +16,6 @@ static volatile int y;
 
 This creates unnecessary CPU work and can slow down the application.
 
-Think of it like this:
-
-> Two people are working on different documents, but both documents are kept in the same folder. Every time one person changes their document, the other person's copy of the folder becomes outdated.
-
 That's essentially **false sharing**.
 
 ---
