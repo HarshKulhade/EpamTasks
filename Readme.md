@@ -61,11 +61,3 @@ Cache Line 1                  Cache Line 2
 ```
 
 So each thread can update its own cache line without constantly interfering with the other thread.
-
-### In simple words
-
-- **False Sharing:** Different threads use different variables, but the variables share the same cache line, causing unnecessary performance overhead.
-- **Padding:** Adding unused space between variables to try to keep them on separate cache lines.
-- **Goal:** Reduce cache invalidation and improve multithreaded performance.
-
-> **Important:** In Java, manually adding fields like `p1...p6` doesn't strictly guarantee separate cache lines because the JVM controls memory layout. For production-grade benchmarking, mechanisms such as `@Contended` and JMH are preferred.
