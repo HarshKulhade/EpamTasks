@@ -5,12 +5,12 @@ public class CountersWithPadding {
 
     static void main() throws Exception{
         Thread t1 = new  Thread(() -> {
-            for(int i=0; i<100_000_00; i++){
+            for(int i=0; i<100_000_000; i++){
                 CountersWithPadding.x++;
             }
         });
         Thread t2 = new  Thread(() -> {
-            for(int i=0; i<100_000_00; i++){
+            for(int i=0; i<100_000_000; i++){
                 CountersWithPadding.y++;
             }
         });
@@ -22,7 +22,7 @@ public class CountersWithPadding {
         long endTime = System.nanoTime();
         System.out.println(CountersWithPadding.x);
         System.out.println(CountersWithPadding.y);
-        System.out.println("Time Taken : "+ (endTime-startTime)/100_000+"ms");
+        System.out.println("Time Taken : "+ (endTime-startTime)/1000_000+"ms");
     }
 }
 
