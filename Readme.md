@@ -57,3 +57,17 @@ Cache Line 1                  Cache Line 2
 ```
 
 So each thread can update its own cache line without constantly interfering with the other thread.
+
+---
+
+## Instruction Reordering
+
+`InstructionReorderingTest` demonstrates a two-thread read/write pattern using the shared, non-`volatile` variables `a`, `b`, `x`, and `y`.
+
+- Thread A writes `1` to `a`, then reads `b` into `x`.
+- Thread B writes `1` to `b`, then reads `a` into `y`.
+- Both threads are started and joined before the results are checked.
+
+Because the threads do not synchronize with each other while accessing these variables, the Java Memory Model does not guarantee that each thread will observe the other thread's write. In particular, the outcome `x == 0` and `y == 0` is possible.
+
+The current test throws an `AssertionError` if both values are zero; otherwise, it prints `Test passed.` This is a single run, so it does not guarantee that any particular outcome will occur each time.
