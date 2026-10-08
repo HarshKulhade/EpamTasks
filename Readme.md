@@ -62,7 +62,7 @@ So each thread can update its own cache line without constantly interfering with
 
 ## Instruction Reordering
 
-`InstructionReorderingTest` demonstrates a two-thread read/write pattern using the shared, non-`volatile` variables `a`, `b`, `x`, and `y`.
+`race-proof/InstructionReorderingTest.java` demonstrates a two-thread read/write pattern using the shared, non-`volatile` variables `a`, `b`, `x`, and `y`.
 
 - Thread A writes `1` to `a`, then reads `b` into `x`.
 - Thread B writes `1` to `b`, then reads `a` into `y`.
